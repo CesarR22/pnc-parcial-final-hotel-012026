@@ -1,7 +1,7 @@
 package com.uca.pncparcialfinalhotel.security;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.ObjectMapper;
 import com.uca.pncparcialfinalhotel.entities.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
