@@ -27,7 +27,7 @@ services:
       DATABASE_URL: jdbc:postgresql://db:5432/hotel_reservations_db
       DATABASE_USERNAME: postgres
       DATABASE_PASSWORD: root
-      JWT_SECRET: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+      JWT_SECRET: dev-local-demo-jwt-secret-change-me-not-for-production-2026
       JWT_ACCESS_EXPIRATION_MS: 900000
       REFRESH_TOKEN_EXPIRATION_MS: 604800000
     networks:
