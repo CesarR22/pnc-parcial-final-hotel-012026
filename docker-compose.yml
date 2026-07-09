@@ -1,0 +1,41 @@
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: hotel-reservations-db
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: hotel_reservations_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    volumes:
+      - hotel_reservations_data:/var/lib/postgresql/data
+    networks:
+      - hotel-reservations-network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hotel-reservations-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      DATABASE_URL: jdbc:postgresql://db:5432/hotel_reservations_db
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: root
+      JWT_SECRET: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+      JWT_ACCESS_EXPIRATION_MS: 900000
+      REFRESH_TOKEN_EXPIRATION_MS: 604800000
+    networks:
+      - hotel-reservations-network
+
+volumes:
+  hotel_reservations_data:
+
+networks:
+  hotel-reservations-network:
+    name: hotel-reservations-network
